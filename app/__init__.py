@@ -19,9 +19,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Sample HTTP error handling
-#@app.errorhandler(404)
-#def not_found(error):
-#    return render_template('index.html'), 200
+@app.errorhandler(404)
+def not_found(error):
+   return render_template('index.html'), 200
 
 def requires_auth(f):
     @wraps(f)

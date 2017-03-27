@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="list-group">
+        {{#each todos}}
+            <div href="/todo/{{ id }}" class="list-group-item clearfix" {{#if done}} style="text-decoration: line-through" {{/if}}>
+                <strong>{{ title }}</strong>
+                <small> {{ text }} </small>
+                {{^done}} <div class="btn btn-primary pull-right mark-as-done" data-id="{{ id }}">Mark as done</div> {{/done}}
+                <div class="btn pull-right" style="margin-right: 1em; background-color: {{ color }}" class="pull-right">&nbsp;</div>
+            </div>
+
+        {{/each}}
+    </div>
+    <a href="todo/create" class="btn btn-primary">Add a task</a>
+</div>
