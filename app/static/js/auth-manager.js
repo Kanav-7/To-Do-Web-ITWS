@@ -23,6 +23,16 @@ var authManager = (function() {
         });
     };
 
+    var logout = function () {
+        $.post({
+            url: '/api/logout',
+            success: function (response) {
+                loginState = null;
+                page("/");
+            },
+        });
+    }
+
     var showRegister = function () {
         viewManager.render('register', function ($view) {
             $view
@@ -65,6 +75,9 @@ var authManager = (function() {
                     }
                     cb(loginState);
                 },
+                error: function (response) {
+                    cb(loginState);
+                }
             });
         } else {
             cb(loginState);
@@ -73,10 +86,12 @@ var authManager = (function() {
 
     var requiresAuthentication = function(ctx, next) {
         getLoginState(function (state) {
-            if (state.loggedIn) {
+            console.log(state);
+            if (state && state.loggedIn) {
                 next();
             } else {
                 intendedPath = ctx.path;
+                showLogin();
             }
         });
     };
@@ -93,6 +108,7 @@ var authManager = (function() {
 
     var aManager = {};
     aManager.showLogin = showLogin;
+    aManager.logout = logout;
     aManager.showRegister = showRegister;
     aManager.allowOnlyGuest = allowOnlyGuest;
     aManager.requiresAuthentication = requiresAuthentication;

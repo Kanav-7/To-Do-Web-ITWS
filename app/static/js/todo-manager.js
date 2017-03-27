@@ -21,12 +21,6 @@ var todoManager = (function () {
                 }, function($view) {
                     $view.find(".mark-as-done").click(markDone);
                 });
-            },
-            error: function(res) {
-                if (res.status == 401) {
-                    console.log("Need login");
-                    authManager.showLogin();
-                }
             }
         });
     };
@@ -37,7 +31,6 @@ var todoManager = (function () {
         }, function ($view) {
             console.log($view);
             $view.submitViaAjax(function (response) {
-                allTodos.push(response.todo);
                 page('/');
             });
         });
