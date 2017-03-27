@@ -10,6 +10,17 @@ var todoManager = (function () {
         })
     }
 
+    var deleteTask = function() {
+        id = $(this).data('id');
+        $.ajax({
+            method: 'post',
+            url: '/api/todo/' + id + '/delete',
+            success: function(res) {
+                listAll();
+            }
+        })
+    }
+
     var listAll = function () {
         $.ajax({
             method: 'get',
@@ -20,6 +31,7 @@ var todoManager = (function () {
                     todos: res.todos,
                 }, function($view) {
                     $view.find(".mark-as-done").click(markDone);
+                    $view.find(".delete-task").click(deleteTask);
                 });
             }
         });
