@@ -1,7 +1,6 @@
 from flask import Blueprint, request, session, jsonify
 from app import db, requires_auth
 from .models import Todo
-from validate_email import validate_email
 
 mod_todo = Blueprint('todo', __name__, url_prefix='/api')
 
