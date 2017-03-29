@@ -49,7 +49,6 @@ var todoManager = (function () {
     };
 
     var listOne = function (id) {
-        console.log(id);
         $.ajax({
             method: 'get',
             url: '/api/todo',

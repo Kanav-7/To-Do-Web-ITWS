@@ -91,7 +91,8 @@ var authManager = (function() {
                 next();
             } else {
                 intendedPath = ctx.path;
-                showLogin();
+                //showLogin();
+                page('/login');
             }
         });
     };

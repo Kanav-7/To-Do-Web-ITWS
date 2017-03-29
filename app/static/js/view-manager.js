@@ -14,7 +14,7 @@ var viewManager = (function () {
     };
 
     var render = function(view, data, callback) {
-        console.log(view, data, arguments);
+
         if ($.isFunction(data)) {
             callback = data;
             data = {};
